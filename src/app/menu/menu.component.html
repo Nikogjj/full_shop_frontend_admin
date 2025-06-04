@@ -1,0 +1,12 @@
+<div class="container">
+    <div class="logo">
+        <img id="logo" src="logo.png" alt="logo">
+    </div>
+    <div class="container_navs">
+        @for (nav of tab_men_nav; track $index) {
+            <app-menu-nav [name]="nav.name" [img_url]="nav.img_url"></app-menu-nav>
+        }
+        <app-menu-nav name="Deconnexion" img_url="logout.svg"></app-menu-nav>
+    </div>
+
+</div>

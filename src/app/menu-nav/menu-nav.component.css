@@ -1,0 +1,18 @@
+:host{
+    width: 100%;
+}
+.container{
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 1rem 0 1rem;
+}
+.container:hover{
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+img{
+    width: 2.5rem;
+}
