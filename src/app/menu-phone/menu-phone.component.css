@@ -1,0 +1,26 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 100vw;
+    height: 10vh;
+    background-color: #fff2db;
+    padding: 1vh 1vw 1vh 1vw;
+    gap: 5%;
+}
+.container_content{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3rem ;
+    background-color: rgba(255, 255, 255, 0.568);
+}
+.container_content img{
+    cursor: pointer;
+    height: 100%;
+    width: 2rem;
+}

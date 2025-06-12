@@ -1,1 +1,23 @@
-<router-outlet></router-outlet>
+@if (getUrl()=="/login") {
+    <app-login-page></app-login-page>
+}
+@else {
+    @if (this.listenWindowWidthChange() >1000) {
+        <div class="desktop">
+            <app-menu></app-menu>
+            <div class="header_router">
+                <app-header></app-header>
+                <router-outlet ></router-outlet>
+            </div>
+        </div>
+    }
+    @else {
+        <div class="phone">
+            <app-header></app-header>
+            <div class="router">
+                <router-outlet></router-outlet>
+            </div>
+            <app-menu-phone></app-menu-phone>
+        </div>
+    }
+}

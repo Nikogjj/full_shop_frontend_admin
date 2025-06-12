@@ -1,15 +1,17 @@
 :host{
-    background-color: black;
+    background-color: #fff2db;
+    width: 100%;
+    /* gap: 5%; */
     height: 100%;
 }
 .container{
+    padding: 1rem 0 1rem 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100%;
+    justify-content: space-between;
     width: 100%;
-    padding: 1rem 0 1rem 0;
-    gap: 5%;
+    height: 100%;
 }
 .logo{
     width: 100%;
@@ -24,4 +26,12 @@
 
 .container_navs{
     width: 100%;
+}
+.container_logo_navs{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 55%;
 }

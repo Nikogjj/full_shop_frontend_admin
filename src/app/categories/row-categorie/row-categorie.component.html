@@ -1,0 +1,11 @@
+<div class="row">
+    @for (info of infos; track $index) {
+        <p>{{info()}}</p>
+    }
+    <div class="img">
+        <img (click)="this.categoriesService.test(this.id())" src="modify.svg" alt="">
+    </div>
+    <div class="img">
+        <img src="delete.svg" alt="">
+    </div>
+</div>

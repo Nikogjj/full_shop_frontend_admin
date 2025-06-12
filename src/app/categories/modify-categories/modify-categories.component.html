@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="title_cross">
+        <h2>Modifier la catégorie</h2>
+        <img (click)="this.categoriesService.toogleModifyIsTouched()" src="cross.svg" alt="">
+    </div>
+    <form class="form">
+        <p><span [style.font-weight]="bold">Nom :</span> {{this.categoriesService.categoriesModified.nom}} </p>
+        <input type="text" placeholder="Entrez le nouveau nom">
+        <p><span [style.font-weight]="bold">Catégorie parent : </span>
+            @if (this.categoriesService.categoriesModified.nom_parent == null) {
+                Aucun
+            }
+            @else {
+                {{this.categoriesService.categoriesModified.nom_parent}}
+            }
+        </p>
+        <select [(ngModel)]='ngDropdown' name="dropdownOption" id="dropdownOption" class='form-control'>
+            <option value="1">None</option>
+            @for (categorie of this.categoriesService.categories; track $index) {
+                <option value="{{$index}}">{{categorie.nom}}</option>
+            }
+        </select>
+        <button type="submit">Valider les changements</button>
+    </form>
+</div>

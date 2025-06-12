@@ -1,12 +1,14 @@
 :host{
     width: 100%;
+    font-weight: bold;
 }
 .container{
-    background-color: white;
+    background-color: transparent;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding: 0 1rem 0 1rem;
+    border-bottom: 1px solid black;
 }
 .container:hover{
     background-color: #f0f0f0;

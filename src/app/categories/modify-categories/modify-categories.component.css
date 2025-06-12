@@ -1,0 +1,52 @@
+.container{
+    height: 100%;
+}
+.title_cross{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    text-align: center;
+}
+.title_cross img{
+    width: 3rem;
+    cursor: pointer;
+    
+}
+.title_cross img:hover{
+    background-color: white;
+    border-radius: 1rem;
+}
+
+input{
+    width: 100%;
+    padding: 0.5rem;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+.form-control{
+    padding: 5px 10px;
+    background-color: rgb(255, 255, 255);
+    border-color: black;
+    width: 100px;
+    height: 30px;
+  }
+option:hover{  
+    background-color: white;
+}
+.form button{
+    margin-top: 1rem;
+    border: none;
+    background-color: white;
+    padding: 0.5rem;
+    cursor: pointer;
+    border: 1px solid black;
+}
+.form button:hover{
+    background-color: rgba(255, 255, 255, 0.671);
+}

@@ -1,0 +1,23 @@
+<h1>Catégories</h1>
+<div class="container_categories">
+    <div class="search_and_add">
+        <input type="text">
+        <img src="add.svg" alt="">
+    </div>
+    <div class="colonnes">
+        <p>id</p>
+        <p>nom</p>
+        <p>modifier</p>
+        <p>delete</p>
+    </div>
+    <div class="categories">
+        @for (categorie of this.categoriesService.categories; track $index) {
+            <app-row-categorie [id]="categorie.id" [nom]="categorie.nom" ></app-row-categorie>
+        }
+    </div>
+    @if (this.categoriesService.modifyIsTouched) {
+        <div class="test">
+            <app-modify-categories id="modify"></app-modify-categories>
+        </div>
+    }
+</div>
