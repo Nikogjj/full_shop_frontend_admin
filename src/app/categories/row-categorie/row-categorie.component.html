@@ -1,18 +1,33 @@
-<div class="row">
+<div #rowRef class="row" [ngStyle]="{'background-color': getCouleurBackground()}">
   <div id="arrow_down">
     <div class="img">
-      <img  
-        src="arrow_down.svg" 
-        alt="arrow_down"
-      >
+      @if (this.toggleEnfantsIsTouched) {
+        <img  
+          src="arrow_down.svg" 
+          alt="arrow_down"
+          (click)="this.toggleEnfants()"
+        >
+      }
+      @else {
+        <img  
+          src="arrow_up.svg" 
+          alt="arrow_down"
+          (click)="this.toggleEnfants()"
+        >
+      }
     </div>
   </div>
     @for (info of infos; track $index) {
-      <p>{{info()}}</p>
+      @if ($index ==1) {
+        <p class="p">{{info()}}</p>
+      }
+      @else {
+        <p>{{info()}}</p>
+      }
     }
     <div class="img">
       <img 
-        (click)="this.categoriesService.displayDataCategorie(this.id())" 
+        (click)="this.modify(rowRef)" 
         src="modify.svg" 
         alt="Modifier la catégorie"
         title="Modifier">
@@ -22,7 +37,17 @@
         src="delete.svg" 
         alt="Supprimer la catégorie"
         title="Supprimer"
-        (click)="this.categoriesService.displayDataToDelete(this.infos)"
+        (click)="this.delete(rowRef)"
         >
     </div>
   </div>
+  @if (this.toggleEnfantsIsTouched) {
+    @if (categoriesEnfants.length == 0) {
+      <div class="empty-row"><p>pas d'enfants pour cette catégorie</p></div>
+    }
+    @else{
+      @for (categorie of categoriesEnfants; track $index) {
+        <app-row-categorie [color]="color_enfant" [id]="categorie.id" [nom]="categorie.nom"></app-row-categorie>
+      }
+    }
+  }
