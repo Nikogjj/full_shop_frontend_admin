@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="title_cross">
+      <h2>Supprimer la catégorie</h2>
+      <img
+        src="cross.svg"
+        alt="Fermer"
+        (click)="categoriesService.toggleDeleteIsTouched()"
+      />
+    </div>
+  
+    <div class="content">
+      <p>
+        Es-tu sûr de vouloir supprimer la catégorie
+        <strong>"{{ categoriesService.categoryToDelete.nom }}"</strong> ?
+      </p>
+      <p>Si cette catégorie comporte des catégories enfants, ces mêmes catégories verront donc leur catégorie parent changer</p>
+      <p>Cette action est <strong>irreversible</strong>.</p>
+    </div>
+  
+    <div class="buttons">
+      <button class="cancel" (click)="categoriesService.toggleDeleteIsTouched()">
+        Annuler
+      </button>
+      <button class="delete" (click)="this.categoriesService.deleteCategory()">
+        Supprimer
+      </button>
+    </div>
+  </div>
+  

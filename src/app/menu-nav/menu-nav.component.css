@@ -1,4 +1,4 @@
-:host{
+/* :host{
     width: 100%;
     font-weight: bold;
 }
@@ -17,4 +17,167 @@
 
 img{
     width: 2.5rem;
-}
+} */
+
+:host {
+    width: 100%;
+    font-weight: 600;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    user-select: none;
+  }
+  
+  .container {
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #e5e7eb;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    min-height: 3.5rem;
+    overflow: hidden;
+  }
+  
+  .container::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 3px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+    border-radius: 0 2px 2px 0;
+  }
+  
+  .container:hover {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    cursor: pointer;
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+  
+  .container:hover::before {
+    transform: scaleY(1);
+  }
+  
+  .container:active {
+    transform: translateX(2px) scale(0.98);
+    transition: all 0.1s ease;
+  }
+  
+  /* État actif/sélectionné */
+  .container.active {
+    background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+    border-left: 3px solid #6366f1;
+    color: #4338ca;
+  }
+  
+  .container.active::before {
+    transform: scaleY(1);
+    background: #6366f1;
+  }
+  
+  img {
+    width: 2.5rem;
+    height: 2.5rem;
+    object-fit: contain;
+    transition: all 0.3s ease;
+    border-radius: 6px;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+  }
+  
+  .container:hover img {
+    transform: scale(1.05);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+  }
+  
+  /* Texte du menu */
+  .menu-text {
+    flex: 1;
+    margin-left: 0.75rem;
+    font-size: 0.95rem;
+    color: #374151;
+    transition: color 0.25s ease;
+    letter-spacing: 0.01em;
+  }
+  
+  .container:hover .menu-text {
+    color: #111827;
+  }
+  
+  .container.active .menu-text {
+    color: #4338ca;
+    font-weight: 700;
+  }
+  
+  /* Icône de flèche (optionnelle) */
+  .arrow-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+    color: #9ca3af;
+  }
+  
+  .container:hover .arrow-icon {
+    opacity: 1;
+    transform: translateX(0);
+    color: #6b7280;
+  }
+  
+  .container.active .arrow-icon {
+    opacity: 1;
+    transform: translateX(0);
+    color: #4338ca;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .container {
+      padding: 0.5rem 0.75rem;
+      min-height: 3rem;
+    }
+    
+    img {
+      width: 2rem;
+      height: 2rem;
+    }
+    
+    .menu-text {
+      font-size: 0.9rem;
+      margin-left: 0.5rem;
+    }
+  }
+  
+  /* Animation au chargement */
+  @keyframes slideInFromLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .container {
+    animation: slideInFromLeft 0.4s ease-out;
+  }
+  
+  /* Focus pour l'accessibilité */
+  .container:focus {
+    outline: 2px solid #6366f1;
+    outline-offset: -2px;
+    background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+  }
+  
+  .container:focus-visible {
+    outline: 2px solid #6366f1;
+    outline-offset: 2px;
+  }

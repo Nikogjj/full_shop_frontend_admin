@@ -1,23 +1,39 @@
 <h1>Catégories</h1>
 <div class="container_categories">
-    <div class="search_and_add">
-        <input type="text">
-        <img src="add.svg" alt="">
+  <div class="search_and_add">
+    <input type="text" placeholder="Rechercher une catégorie...">
+    <img (click)="this.categoriesService.toggleCreateIsTouched()" src="add.svg" alt="Ajouter une catégorie" title="Ajouter une catégorie">
+  </div>
+  <div class="colonnes">
+    <div id="arrow_down">
+      <img  
+        src="arrow_down.svg" 
+        alt="arrow_down"
+      >
     </div>
-    <div class="colonnes">
-        <p>id</p>
-        <p>nom</p>
-        <p>modifier</p>
-        <p>delete</p>
-    </div>
-    <div class="categories">
-        @for (categorie of this.categoriesService.categories; track $index) {
-            <app-row-categorie [id]="categorie.id" [nom]="categorie.nom" ></app-row-categorie>
-        }
-    </div>
-    @if (this.categoriesService.modifyIsTouched) {
-        <div class="test">
-            <app-modify-categories id="modify"></app-modify-categories>
-        </div>
+    <p>ID</p>
+    <p>Nom</p>
+    <p>Modifier</p>
+    <p>Supprimer</p>
+  </div>
+  <div class="categories">
+    @for (categorie of this.categoriesService.parentCategories; track $index) {
+      <app-row-categorie [id]="categorie.id" [nom]="categorie.nom"></app-row-categorie>
     }
+  </div>
+  @if (this.categoriesService.modifyIsTouched) {
+    <div class="modal_overlay">
+      <app-modify-categories id="modify"></app-modify-categories>
+    </div>
+  }
+  @if (this.categoriesService.createIsTouched) {
+    <div class="modal_overlay">
+      <app-create-categories></app-create-categories>
+    </div>
+  }
+  @if (this.categoriesService.deleteIsTouched) {
+    <div class="modal_overlay">
+      <app-delete-categories></app-delete-categories>
+    </div>
+  }
 </div>

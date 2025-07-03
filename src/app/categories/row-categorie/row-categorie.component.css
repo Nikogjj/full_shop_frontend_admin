@@ -1,20 +1,117 @@
-.row{
+.row {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    text-align: center;
+    grid-template-columns: 1fr 1fr 2fr 1fr 1fr;
     align-items: center;
+    text-align: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #e0e0e0;
+    background-color: white;
+    transition: background-color 0.2s ease;
+    margin-bottom: 0.25rem;
+    border-radius: 0.5rem;
+  }
+  
+  .row:hover {
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .row:last-child {
+    border-bottom: none;
+  }
+  
+  .row p {
+    margin: 0;
+    padding: 0 0.5rem;
+    font-size: 0.95rem;
+    color: #333;
+    word-wrap: break-word;
+  }
+  
+  .row p:nth-child(2) {
+    font-weight: 500;
+    text-align: center;
+    padding-left: 1rem;
+  }
+  
+  .img {
+    display: flex;
     justify-content: center;
-}
-.img{
-    width: 100%;
+    align-items: center;
+    padding: 0.25rem;
+  }
+  
+  .img img {
+    width: 2rem;
     height: 2rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+  }
+  
+  .img img:hover {
+    transform: scale(1.1);
+  }
+  
+  
+  .img:nth-child(3) img:hover {
+    background-color: rgba(54, 162, 235, 0.1);
+  }
+  
+  .img:nth-child(4) img:hover {
+    background-color: rgba(255, 99, 132, 0.1);
+  }
+  #arrow_down{
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: center;
-}
-.img img{
-    cursor: pointer;
-    width: 50%;
+    align-items: center;
+    width: 100%;
     height: 100%;
-}
+  }
+  #arrow_down:hover {
+    transition: all 0.2s ease;
+    transform: scale(1.1);
+    cursor: pointer;
+  }
+  #arrow_down img {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  
+  @media (max-width: 768px) {
+    .row {
+      padding: 0.5rem 0;
+    }
+    
+    .row p {
+      font-size: 0.85rem;
+      padding: 0 0.25rem;
+    }
+    
+    .row p:nth-child(2) {
+      padding-left: 0.5rem;
+    }
+    
+    .img img {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .row {
+      padding: 0.4rem 0;
+      grid-template-columns: 0.5fr 0.5fr 2fr 1fr 1fr;
+    }
+    
+    .row p {
+      font-size: 0.8rem;
+    }
+    
+    .img img {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }

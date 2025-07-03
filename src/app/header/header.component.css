@@ -19,7 +19,7 @@ img{
 #logout_phone{
     display: none;
 }
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
     #logout_phone{
         display: flex;
     }

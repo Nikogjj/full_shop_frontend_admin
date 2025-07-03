@@ -1,11 +1,28 @@
 <div class="row">
+  <div id="arrow_down">
+    <div class="img">
+      <img  
+        src="arrow_down.svg" 
+        alt="arrow_down"
+      >
+    </div>
+  </div>
     @for (info of infos; track $index) {
-        <p>{{info()}}</p>
+      <p>{{info()}}</p>
     }
     <div class="img">
-        <img (click)="this.categoriesService.test(this.id())" src="modify.svg" alt="">
+      <img 
+        (click)="this.categoriesService.displayDataCategorie(this.id())" 
+        src="modify.svg" 
+        alt="Modifier la catégorie"
+        title="Modifier">
     </div>
     <div class="img">
-        <img src="delete.svg" alt="">
+      <img 
+        src="delete.svg" 
+        alt="Supprimer la catégorie"
+        title="Supprimer"
+        (click)="this.categoriesService.displayDataToDelete(this.infos)"
+        >
     </div>
-</div>
+  </div>
