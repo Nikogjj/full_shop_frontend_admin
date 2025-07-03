@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="title_cross">
+      <h2>Créer une nouvelle catégorie</h2>
+      <img
+        src="cross.svg"
+        alt="Fermer"
+        (click)="categoriesService.toggleCreateIsTouched()"
+      />
+    </div>
+  
+    <form [formGroup]="formGroup" class="form" (submit)="onSubmit()">
+      <label for="name"><strong>Nom de la catégorie :</strong></label>
+      <input
+        id="name"
+        formControlName="newName"
+        type="text"
+        placeholder="Nom de la catégorie"
+        required
+      />
+      @if (newName?.hasError("required") && newName?.touched) {
+        <p id="msg_error">Le nom de la catégorie est obligatoire</p>
+      }
+      @if (newName?.hasError("minlength")) {
+        <p id="msg_error">Le nom de la catégorie doit faire au moins 3 caractères</p>
+      }
+      @if (newName?.hasError("maxlength")) {
+        <p id="msg_error">Le nom de la catégorie doit faire maximum 50 caractères</p>
+      }
+      @if (newName?.hasError("pattern")) {
+        <p id="msg_error">Le nom de la catégorie ne doit pas contenir de caractères spéciaux</p>
+      }
+
+      <label for="parent"><strong>Catégorie parent :</strong></label>
+      <div class="menu-deroulant" [class.ouvert]="menuOuvert">
+        <div class="valeur-actuelle" (click)="basculerMenu()">
+          <span>{{ categorieAffichee?.nom || 'Aucune' }}</span>
+          <span class="fleche">&#9662;</span>
+          <!-- &#9662; c'est l'unicode qui permet de faire la fleche -->
+        </div>
+        @if (menuOuvert) {
+          <div class="liste-categories">
+            <!-- Quand j'appuie sur aucune l'id est donc egale à 0 (je donne à ma fonction le number 0)-->
+            <div class="categorie-option" (click)="choisirCategorie(0)">Aucune</div>
+            <!-- Quand j'appuie sur une vrai catégorie alors je donne une categorie entiere a ma fonction -->
+            @for (categorie of categoriesService.allCategories; track $index) {
+              <div class="categorie-option" (click)="choisirCategorie(categorie)">
+                {{ categorie.nom }}
+              </div>
+            }
+          </div>
+        }
+      </div>
+
+      <button type="submit">Ajouter</button>
+      @if (nameAlreadyExists) {
+        <p id="msg_error">La catégorie <span [style.font-weight]="'bolder'" >{{this.nameCategorie}}</span> existe déjà</p>
+      }
+    </form>
+  </div>
+  

@@ -1,4 +1,4 @@
-.container{
+/* .container{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -24,3 +24,94 @@
     height: 100%;
     width: 2rem;
 }
+ */
+
+
+ /* Container principal */
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 100vw;
+    height: 10vh;
+    background-color: #fff2db;
+    /* background: linear-gradient(135deg, #fff2db 0%, #ffeaa7 100%); */
+    padding: 1vh 1vw 1vh 1vw;
+    gap: 5%;
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    z-index: 1000;
+    
+  }
+  
+  /* Container de contenu pour chaque icône */
+  .container_content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3rem;
+    background-color: rgba(255, 255, 255, 0.568);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  /* États hover et active */
+  .container_content:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .container_content:active {
+    transform: translateY(-1px) scale(0.95);
+    transition: all 0.1s ease;
+  }
+  
+  /* État actif/sélectionné */
+  .container_content.active {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+  }
+  
+  /* Images/Icônes */
+  .container_content img {
+    cursor: pointer;
+    height: 100%;
+    width: 2rem;
+    object-fit: contain;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  }
+  
+  .container_content:hover img {
+    transform: scale(1.1);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+  }
+  
+  .container_content.active img {
+    filter: brightness(0) invert(1);
+    transform: scale(1.1);
+  }
+  
+  /* Responsive pour petits écrans */
+  @media (max-width: 480px) {
+    .container {
+      padding: 0.8vh 0.8vw;
+      gap: 3%;
+    }
+    
+    .container_content {
+      border-radius: 2rem;
+    }
+    
+    .container_content img {
+      width: 1.8rem;
+    }
+  }
