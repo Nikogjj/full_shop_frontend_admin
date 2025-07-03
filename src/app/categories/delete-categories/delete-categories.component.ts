@@ -10,6 +10,6 @@ import { CategoriesService } from '../../services/categories.service';
 export class DeleteCategoriesComponent {
   categoriesService = inject(CategoriesService);
   confirmDelete() {
-    
+    // this.categoriesService.deleteCategory(this.categoriesService.categoryToDelete.id)
   }
 }

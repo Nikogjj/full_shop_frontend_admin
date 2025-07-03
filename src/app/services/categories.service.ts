@@ -13,6 +13,8 @@ export class CategoriesService {
   deleteIsTouched = false;
   categoryModified!: Category ;
   categoryToDelete!: CategoryToDelete;
+  divToDelete!: HTMLElement | null;
+  divToModify!: HTMLElement | null;
 
 
   constructor() {
@@ -116,6 +118,11 @@ export class CategoriesService {
    */
   modifyCategorie(id: number, name?: string, parentId?: number | null)
   {
+    let p = this.divToModify?.getElementsByClassName("p")[0];
+    if (p != undefined && name != undefined) {
+      p.textContent = name;
+    }
+    this.divToModify?.getElementsByClassName("p")[0].textContent
     return new Promise<void>((resolve, reject) => {
       if (parentId === 0) {
         parentId = null; // Si le parent est 0, on le remplace par null
@@ -136,6 +143,7 @@ export class CategoriesService {
       })
       .then(data => {
         this.getAllParentCategories();
+        this.getAllCategories();
         this.toogleModifyIsTouched();
         resolve(data);
       })
@@ -222,7 +230,6 @@ export class CategoriesService {
       nom: infos[1]() as string
     };
     this.toggleDeleteIsTouched();
-
   }
 
   /**
@@ -231,6 +238,8 @@ export class CategoriesService {
    * @returns 
    */
   async deleteCategory() {
+    this.divToDelete?.remove();
+    this.divToDelete = null;
     await fetch("http://localhost:8000/api/delete_category/" + this.categoryToDelete.id, {
       method: "DELETE"
     })
@@ -248,5 +257,24 @@ export class CategoriesService {
       console.error("Erreur lors de la suppression de la catégorie :", error);
       throw error;
     })
+  }
+  /**
+   * Affiche les catégories enfants d'une catégorie
+   */
+  getEnfantsCategories(id : number){
+    return new Promise<Category[]>((resolve, reject) => {
+      fetch("http://localhost:8000/api/get_enfants_categories/" + id, {
+        method: "GET"
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        resolve(data);
+      })
+      .catch(error => {
+        console.error(error);
+        reject(error);
+      });
+    });
   }
 }

@@ -7,7 +7,7 @@
   <div class="colonnes">
     <div id="arrow_down">
       <img  
-        src="arrow_down.svg" 
+        src="arrow_menu.svg" 
         alt="arrow_down"
       >
     </div>
@@ -18,7 +18,7 @@
   </div>
   <div class="categories">
     @for (categorie of this.categoriesService.parentCategories; track $index) {
-      <app-row-categorie [id]="categorie.id" [nom]="categorie.nom"></app-row-categorie>
+      <app-row-categorie [color]="0.0" [id]="categorie.id" [nom]="categorie.nom"></app-row-categorie>
     }
   </div>
   @if (this.categoriesService.modifyIsTouched) {
