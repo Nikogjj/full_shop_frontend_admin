@@ -9,7 +9,17 @@ import { CategoriesService } from '../../services/categories.service';
 })
 export class DeleteCategoriesComponent {
   categoriesService = inject(CategoriesService);
-  confirmDelete() {
-    // this.categoriesService.deleteCategory(this.categoriesService.categoryToDelete.id)
+  confirmDelete(){
+    this.categoriesService.deleteCategory()
+    .then(response => {
+      if (response.message == "La catégorie a bien été supprimée") {
+        this.categoriesService.toggleDeleteIsTouched();
+        this.categoriesService.allCategories.forEach((categorie,i) => {
+          if (response.id == categorie.id) {
+            this.categoriesService.allCategories.splice(i, 1);
+          }
+        });
+      }
+    })
   }
 }

@@ -23,33 +23,30 @@ export class CreateCategoriesComponent {
     ]),
     newParent : new FormControl(0)
   })
-
+  
   get newName() {
     return this.formGroup.get('newName');
   }
-  
+
   async onSubmit() {
     if (this.formGroup.invalid) return;
   
-    const name = this.formGroup.value.newName??="";
-    const parent = this.formGroup.value.newParent;
-  
+    const name = this.formGroup.value.newName??="";  
     console.log("Nom de la nouvelle catégorie :", name);
-    console.log("Parent de la nouvelle catégorie :", parent);
 
-    const checkIfCategoryNameExists = await this.categoriesService.checkIfCategoryNameExists(name);
-
-    if (checkIfCategoryNameExists){
-      this.nameAlreadyExists = true;
-      this.nameCategorie = name;
-      return;
-    }
-    else{
-      this.nameAlreadyExists = false;
-      this.categoriesService.createNewCategory(name, parent?? null)
-      .then(res=>console.log(res))
-      return;
-    }
+    await this.categoriesService.checkIfCategoryNameExists(name)
+    .then(response=>{
+      if (response.message == "La catégorie n'existe pas"){
+        this.nameAlreadyExists = false;
+        this.categoriesService.createNewCategory(name)
+        .then(res=>console.log(res))
+        return;
+      }
+      else{
+        this.nameAlreadyExists = true;
+        return;
+      }
+    })
     
   }
 

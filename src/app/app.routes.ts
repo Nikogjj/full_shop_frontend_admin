@@ -5,7 +5,7 @@ import { CategoriesComponent } from './categories/categories.component';
 
 export const routes: Routes = [
     // {path:"", redirectTo:"login", pathMatch:"full"},
-    {path:"login",component:LoginPageComponent},
-    {path:"accueil",component:AccueilComponent},
-    {path:"categories",component:CategoriesComponent}
+    {path:"Login",component:LoginPageComponent},
+    {path:"Accueil",component:AccueilComponent},
+    {path:"Categories",component:CategoriesComponent}
 ];
