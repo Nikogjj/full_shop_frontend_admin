@@ -1,4 +1,5 @@
 import { Component, input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu-nav',
@@ -9,4 +10,9 @@ import { Component, input } from '@angular/core';
 export class MenuNavComponent {
   name = input("");
   img_url = input("");
+  router = new Router();
+
+  navToPage(){
+    this.router.navigate([this.name()]);
+  }
 }

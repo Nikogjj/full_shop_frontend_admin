@@ -1,24 +1,30 @@
 <h1>Catégories</h1>
 <div class="container_categories">
   <div class="search_and_add">
-    <input type="text" placeholder="Rechercher une catégorie...">
+    <input type="text" (keyup)="this.searchCategories($event)" placeholder="Rechercher une catégorie...">
     <img (click)="this.categoriesService.toggleCreateIsTouched()" src="add.svg" alt="Ajouter une catégorie" title="Ajouter une catégorie">
   </div>
   <div class="colonnes">
-    <div id="arrow_down">
-      <img  
-        src="arrow_menu.svg" 
-        alt="arrow_down"
-      >
-    </div>
     <p>ID</p>
     <p>Nom</p>
     <p>Modifier</p>
     <p>Supprimer</p>
   </div>
   <div class="categories">
-    @for (categorie of this.categoriesService.parentCategories; track $index) {
-      <app-row-categorie [color]="0.0" [id]="categorie.id" [nom]="categorie.nom"></app-row-categorie>
+    @if (this.isSearchBarActive) {
+      @if (this.resultatsSearch?.length == 0 && this.resultatsSearch != null) {
+        <div class="empty-row"><p>Aucun résultat trouvé pour votre recherche</p></div>
+      }
+      @else {
+        @for (categorie of this.resultatsSearch; track $index) {
+          <app-row-categorie [id]="categorie.id" [nom]="categorie.name"></app-row-categorie>
+        }
+      }
+    }
+    @else {
+      @for (categorie of this.categoriesService.allCategories; track $index) {
+        <app-row-categorie [id]="categorie.id" [nom]="categorie.name"></app-row-categorie>
+      }
     }
   </div>
   @if (this.categoriesService.modifyIsTouched) {

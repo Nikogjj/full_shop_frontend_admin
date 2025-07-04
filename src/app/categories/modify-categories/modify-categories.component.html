@@ -6,28 +6,36 @@
   
     <form [formGroup]="formGroup" class="form" (submit)="onSubmit()">
       <p>
-        <strong>Nom :</strong> {{ categoriesService.categoryModified.nom }}
+        <strong>Nom :</strong> {{ categoriesService.categoryModified.name }}
       </p>
       <input formControlName="newName" type="text" placeholder="Entrez le nouveau nom" required />
-  
-      <p>
-        <strong>Catégorie parent :</strong>
-        @if (categoriesService.categoryModified.nom_parent == null) {
-          Aucun
-        }
-        @else {
-          {{ categoriesService.categoryModified.nom_parent }}
-        }
-      </p>
-  
-      <select formControlName="newParent">
-        <option value="0">Aucun</option>
-        @for (categorie of categoriesService.allCategories; track $index) {
-          <option [value]="categorie.id">{{ categorie.nom }}</option>
-        }
-      </select>  
+      @if (newName?.hasError("required") && newName?.touched) {
+        <p id="msg_error">Le nom de la catégorie est obligatoire</p>
+      }
+      @if (newName?.hasError("minlength")) {
+        <p id="msg_error">Le nom de la catégorie doit faire au moins 3 caractères</p>
+      }
+      @if (newName?.hasError("maxlength")) {
+        <p id="msg_error">Le nom de la catégorie doit faire maximum 50 caractères</p>
+      }
+      @if (newName?.hasError("pattern")) {
+        <p id="msg_error">Le nom de la catégorie ne doit pas contenir de caractères spéciaux</p>
+      }
+      <div class="infos">
+        <p>
+          <strong>Créée le :</strong>
+          {{ categoriesService.categoryModified.created_at}}
+        </p>
+        <p>
+          <strong>Modifiée le :</strong>
+          {{ categoriesService.categoryModified.updated_at}}
+        </p>
+      </div>
   
       <button type="submit">Valider les changements</button>
+      @if (this.msgError != "") {
+        <p [style]="{'color': 'red'}">{{this.msgError}}</p>
+      }
     </form>
   </div>
   
